@@ -8,6 +8,9 @@ const SearchBar = props => {
   function reset() {
     return setValue('');
   }
+  function onChange(e) {
+   setValue(e.target.value);
+  }
 
   return (
     <form className={css.SearchForm} onSubmit={onSubmit}>
@@ -16,13 +19,13 @@ const SearchBar = props => {
       </button>
 
       <input
-        onChange={e => setValue(e)}
+        onChange={onChange}
         onClick={reset}
         className={css.SearchFormInput}
         type="text"
         autoComplete="off"
         autoFocus
-        placeholder="Search images and photos"
+        placeholder="Search movie"
         value={value}
       />
     </form>

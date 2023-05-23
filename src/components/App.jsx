@@ -1,9 +1,8 @@
 import Home from 'pages/Home';
 import Movies from 'pages/Movies';
-import {Route, Routes } from 'react-router-dom';
-import{ StyledLink, Hedder, APP, Nav} from './App.styled'
-
-
+import { Route, Routes } from 'react-router-dom';
+import { StyledLink, Hedder, APP, Nav } from './App.styled';
+// import * as API from '../services/themoviedb_API'
 
 export const App = () => {
   return (

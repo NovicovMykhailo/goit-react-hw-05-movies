@@ -34,13 +34,12 @@ export const Hedder = styled.header`
   height: 60px;
   background-color: #3498db;
   text-align: center;
-  position: relative;
   position: fixed;
   top: 0;
   overflow: hidden;
+  z-index: 99999;
   display: flex;
-  box-shadow:0 3px 2px -2px rgba(0,0,0,.1);
-
+  box-shadow: 0 3px 2px -2px rgba(0, 0, 0, 0.1);
 `;
 export const Nav = styled.nav`
     position: absolute;

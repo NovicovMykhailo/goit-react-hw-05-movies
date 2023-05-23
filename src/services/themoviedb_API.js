@@ -16,7 +16,7 @@ export async function getTrendingMovies() {
   try {
     const response = await API.get(`/trending/movie/day`);
     // console.log(response.data.results);
-    return response;
+    return response.data.results;
   } catch (error) {
     console.log(error);
   }
@@ -29,8 +29,8 @@ export async function searchMovies(keyword, page = 1) {
         .toLowerCase()
         .trim()}&include_adult=true&page=${page}`
     );
-    // console.log(response.data.results);
-    return response;
+    console.log(response.data.results);
+    return response.data.results;
   } catch (error) {
     console.log(error);
   }
@@ -39,7 +39,7 @@ export async function searchMovies(keyword, page = 1) {
 export async function getDetails(ID) {
   try {
     const response = await API.get(`/movie/${ID}`);
-    // console.log(response.data);
+    console.log(response.data);
     return response.data;
   } catch (error) {
     console.log(error);
@@ -49,7 +49,7 @@ export async function getDetails(ID) {
 export async function getMovieActors(ID) {
   try {
     const response = await API.get(`/movie/${ID}/credits`);
-    //   console.log(response.data.cast.map(actor => actor.name))
+      console.log(response.data.cast.map(actor => actor.name))
     return response.data.cast.map(actor => actor.name);
   } catch (error) {
     console.log(error);
@@ -59,8 +59,8 @@ export async function getMovieActors(ID) {
 export async function getReviews(ID, page = 1) {
   try {
     const response = await API.get(`/movie/${ID}/reviews?page=${page}`);
-    // console.log(response.data.results);
-    return response;
+    console.log(response.data.results);
+    return response.data.results;
   } catch (error) {
     console.log(error);
   }

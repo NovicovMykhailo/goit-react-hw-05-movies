@@ -1,0 +1,18 @@
+section {
+  padding: 0 24px;
+  position: absolute;
+  top: 80px;
+
+}
+.title {
+  margin-bottom: 16px;
+}
+.galleryList {
+    justify-self: center;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  list-style: none;
+  gap: 15px;
+}
+

@@ -1,0 +1,138 @@
+.poster {
+
+  display: flex;
+  flex-direction: column;
+  color: white;
+  gap: 24px;
+  width: 100%;
+  position: relative;
+}
+
+.BG {
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  position: fixed;
+  z-index: -10;
+}
+.BG::before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: -10;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0));
+  backdrop-filter: blur(10px) contrast(1.1);
+}
+
+aside {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  background-color: rgba(0, 0, 0, 0.65);
+  padding: 16px;
+  border-radius: 10px;
+  justify-content: space-between;
+
+  ;
+}
+.posterContainer{  position: relative;}
+.posterLink {
+  display: block;
+  cursor: pointer;
+  transition: all 0.4s ease;
+  will-change: transform;
+  border-radius: 10px;
+  overflow: hidden;
+
+}
+.posterImage {
+  width: 100%;
+  /* max-width: 400px; */
+}
+
+.posterLink:hover {
+  transform: scale(1.05);
+}
+
+.genres {
+  display: flex;
+  gap: 10px;
+}
+.companies {
+   display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  grid-gap: 1rem;
+    flex-grow: 2;
+  align-items: center;
+  flex-wrap: wrap;
+
+}
+
+.companiesLogo{
+
+  width: 100px;
+  object-fit: contain;
+  height: 100%;
+  padding: 10px;
+  background-color: #ffffff;
+  border-radius: 10px;
+  /* filter: brightness(0) invert(1); */
+}
+.locations {
+
+  display: flex;
+  width: 100%;
+  gap: 10px;
+  flex-wrap: wrap;
+  padding: 10px;
+  position: absolute;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.444);
+}
+.locations > li {
+  list-style: circle;
+  display: block;
+}
+.stats{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  gap: 8px;
+text-align: center;
+}
+.topAside{
+  display: flex;
+  flex-direction: column;
+  gap:10px;
+}
+.bottomAside{
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+
+
+@media screen and (min-width: 500px) {
+  .BG {
+    height: calc(100vh - calc(100vh - 100%));
+    background-size: cover;
+  }
+  .poster{
+   flex-direction: row;
+  }
+  .posterImage{
+      width: 50vw;
+  max-width: 400px;
+    gap: 60px;
+  }
+  aside{
+  width: 500px;
+  }
+}

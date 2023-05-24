@@ -39,7 +39,7 @@ export async function searchMovies(keyword, page = 1) {
 export async function getDetails(ID) {
   try {
     const response = await API.get(`/movie/${ID}`);
-    console.log(response.data);
+    // console.log(response.data);
     return response.data;
   } catch (error) {
     console.log(error);

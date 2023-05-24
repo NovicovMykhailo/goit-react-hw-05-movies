@@ -3,7 +3,8 @@ import Movies from 'pages/Movies';
 import { Route, Routes } from 'react-router-dom';
 import { StyledLink, Hedder, APP, Nav } from './App.styled';
 import SearchBar from './Filter/SearchBar';
-import {StyledSection} from './Section/Section';
+import { StyledSection } from './Section/Section';
+import MoviePoster from './MoviePoster/MoviePoster';
 // import * as API from '../services/themoviedb_API'
 
 export const App = () => {
@@ -27,11 +28,10 @@ export const App = () => {
               </StyledSection>
             </Movies>
           }
-        >
-          <Route path=":movieId">
-            <Route path="cast" />
-            <Route path="reviews" />
-          </Route>
+        ></Route>
+        <Route path="/movies/:movieId" element={<MoviePoster />}>
+          <Route path="cast" />
+          <Route path="reviews" />
         </Route>
       </Routes>
     </APP>

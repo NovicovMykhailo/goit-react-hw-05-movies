@@ -81,13 +81,15 @@ const MoviePoster = () => {
             <ul className={css.companies}>
               {production_companies.map(({ name, logo_path, origin_country, id }) => (
                 <li key={id}>
-                  <img
-                    className={css.companiesLogo}
-                    src={`https://image.tmdb.org/t/p/w500/${logo_path}`}
-                    alt={name}
-                    title={`${name}, ${origin_country}`}
-                    loading="lazy"
-                  />
+                  {logo_path && (
+                    <img
+                      className={css.companiesLogo}
+                      src={`https://image.tmdb.org/t/p/w500/${logo_path}`}
+                      alt={name}
+                      title={`${name}, ${origin_country}`}
+                      loading="lazy"
+                    />
+                  )}
                 </li>
               ))}
             </ul>

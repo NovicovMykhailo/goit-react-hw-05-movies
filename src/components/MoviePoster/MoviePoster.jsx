@@ -2,12 +2,15 @@ import { useEffect, useState } from 'react';
 import * as API from '../../services/themoviedb_API';
 import css from './MoviePoster.module.css';
 import { format } from 'date-fns';
+import Loader from 'components/Loader/Loader';
+import Error from 'components/Error/Error';
 const { useParams } = require('react-router-dom');
 
 const MoviePoster = () => {
   const { movieId } = useParams();
   const [info, setInfo] = useState('');
   const [status, setStatus] = useState('idle');
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     setStatus('pending');
@@ -17,9 +20,17 @@ const MoviePoster = () => {
         setStatus('resolved');
       });
     } catch (error) {
-      console.log(error);
+      setError(error);
+      setStatus('rejected');
     }
   }, [movieId]);
+
+  if (status === 'pending') {
+    return <Loader />;
+  }
+  if (status === 'rejected') {
+    return <Error message={error} />;
+  }
 
   if (status === 'resolved') {
     const {
@@ -92,9 +103,8 @@ const MoviePoster = () => {
                       />
                     </li>
                   );
-                } 
-                return ''
-                
+                }
+                return '';
               })}
             </ul>
             <ul className={css.stats}>

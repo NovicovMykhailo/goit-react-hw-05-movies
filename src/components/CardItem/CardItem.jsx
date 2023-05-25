@@ -2,32 +2,27 @@ import { Link } from 'react-router-dom';
 import css from './CardItem.module.css';
 import { format } from 'date-fns';
 
-
-
 const CardItem = ({ data }) => {
   const { id, poster_path, title, overview, release_date, popularity } = data;
   const normalizedPopularity = Number.parseInt(popularity);
   const normalizedDate = format(new Date(release_date), ' dd MMM yyyy');
   return (
     <Link to={`/movies/${id}`}>
-      {' '}
-      <li>
-        <a href={id} title={title} className={css.card}>
-          <div className={css.description}>
-            <ul className={css.stats}>
-              <li>Views: {normalizedPopularity}</li>
-              <li>{normalizedDate}</li>
-            </ul>
-          </div>
-          <img
-            className={css.image}
-            src={`https://image.tmdb.org/t/p/w500/${poster_path}`}
-            alt="{title}"
-            loading="lazy"
-          />
+      <li title={title} className={css.card}>
+        <div className={css.description}>
+          <ul className={css.stats}>
+            <li>Views: {normalizedPopularity}</li>
+            <li>{normalizedDate}</li>
+          </ul>
+        </div>
+        <img
+          className={css.image}
+          src={`https://image.tmdb.org/t/p/w500/${poster_path}`}
+          alt="{title}"
+          loading="lazy"
+        />
 
-          <p className={css.overview}>{overview}</p>
-        </a>
+        <p className={css.overview}>{overview}</p>
       </li>
     </Link>
   );

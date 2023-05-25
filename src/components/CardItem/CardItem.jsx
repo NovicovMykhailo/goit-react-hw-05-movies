@@ -7,8 +7,8 @@ const CardItem = ({ data }) => {
   const normalizedPopularity = Number.parseInt(popularity);
   const normalizedDate = format(new Date(release_date), ' dd MMM yyyy');
   return (
-    <Link to={`/movies/${id}`}>
-      <li title={title} className={css.card}>
+    <li title={title} className={css.card}>
+      <Link to={`/movies/${id}`}>
         <div className={css.description}>
           <ul className={css.stats}>
             <li>Views: {normalizedPopularity}</li>
@@ -23,8 +23,8 @@ const CardItem = ({ data }) => {
         />
 
         <p className={css.overview}>{overview}</p>
-      </li>
-    </Link>
+      </Link>
+    </li>
   );
 };
 

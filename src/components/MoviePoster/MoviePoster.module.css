@@ -31,12 +31,13 @@
 aside {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 50px;
 
   background-color: rgba(0, 0, 0, 0.65);
   padding: 16px;
   border-radius: 10px;
-  justify-content: space-between;
+  max-height: 100%;
+
 }
 .posterContainer {
   position: relative;
@@ -58,46 +59,54 @@ aside {
   gap: 10px;
 }
 .companies {
-  /* display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-  grid-gap: 1rem; */
-  /* flex-grow: 2; */
+
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   gap: 8px;
   align-items: center;
   flex-wrap: wrap;
+  justify-content: space-evenly;
+  width: 100%;
+    max-width: 500px;
 }
 
 .companiesLogo {
-  width: 100px;
+ width: 9rem;
   object-fit: contain;
-  height:77px;
-  padding: 10px;
-  background-color: #FBFAF8;
-  border-radius: 10px;
+  height: 50px;
+  filter: grayscale(1) contrast(2) invert(1) brightness(8);
+
+ 
 }
+
+
+
 .locations {
   display: flex;
   width: 100%;
   gap: 10px;
   flex-wrap: wrap;
   padding: 10px;
-  position: absolute;
+  position: relative;
   bottom: 0;
-  background-color: rgba(0, 0, 0, 0.444);
+  justify-content: flex-end;
+  background-color: rgb(0, 0, 0);
 }
-.locations > li {
-  list-style: circle;
-  display: block;
-}
+
 .stats {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
-  gap: 8px;
+  gap: 10px;
   text-align: center;
+  max-width: 500px;
+  border: 1px solid white;
+  border-radius: 10px;
+  padding: 10px;
+}
+.overview {
+  max-width: 500px;
 }
 .topAside {
   display: flex;
@@ -105,12 +114,11 @@ aside {
   gap: 10px;
 }
 
-.topAside  h4{
- text-decoration: underline;
- text-underline-offset: 4px;
-
+.topAside h4 {
+  text-decoration: underline;
+  text-underline-offset: 4px;
 }
-.topAside  h4:first-child{
+.topAside h4:first-child {
   margin-bottom: 5px;
 }
 .bottomAside {
@@ -119,7 +127,7 @@ aside {
   gap: 30px;
 }
 
-@media screen and (min-width: 500px) {
+@media screen and (min-width: 758px) {
   .BG {
     height: calc(100vh - calc(100vh - 100%));
     background-size: cover;
@@ -129,11 +137,11 @@ aside {
   }
   .posterImage {
     width: 50vw;
-    max-width: 400px;
+    max-width: 500px;
     gap: 60px;
   }
   aside {
-    width: 500px;
+    width: 50%;
   }
   .posterLink:hover {
     transform: scale(1.05);

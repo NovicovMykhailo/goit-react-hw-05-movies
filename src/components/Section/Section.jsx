@@ -7,7 +7,7 @@ const Section = ({ children, title = '' }) => {
         <h1 className="visually-hiddn">{title}</h1>
         {children}
       </section>
-      ;
+      
     </main>
   );
 };

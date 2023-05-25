@@ -47,6 +47,7 @@ const MoviePoster = () => {
       production_countries,
       production_companies,
     } = info;
+
     const normalizedDate = format(new Date(release_date), ' dd MMM yyyy');
 
     return (
@@ -76,6 +77,21 @@ const MoviePoster = () => {
           <div className={css.topAside}>
             <h2>{original_title}</h2>
             <p>{tagline}</p>
+            <ul className={css.stats}>
+              <li>
+                Release Date:
+                <p>{normalizedDate}</p>
+              </li>
+
+              <li>
+                Vote Average:
+                <p>{vote_average}</p>
+              </li>
+              <li>
+                Views:
+                <p> {Number.parseInt(popularity)}</p>
+              </li>
+            </ul>
             <div>
               <h4>Genres: </h4>
               <p>
@@ -84,16 +100,17 @@ const MoviePoster = () => {
                   .join(', ')}
               </p>
             </div>
+
             <h4>Overview: </h4>
-            <p>{overview}</p>
+            <p className={css.overview}>{overview}</p>
           </div>
 
           <div className={css.bottomAside}>
-            <ul className={css.companies}>
+            <ul className={css.companies} data-list>
               {production_companies.map(({ name, logo_path, origin_country, id }) => {
                 if (logo_path !== null) {
                   return (
-                    <li key={id}>
+                    <li key={id} className="company">
                       <img
                         className={css.companiesLogo}
                         src={`https://image.tmdb.org/t/p/w500/${logo_path}`}
@@ -106,20 +123,6 @@ const MoviePoster = () => {
                 }
                 return '';
               })}
-            </ul>
-            <ul className={css.stats}>
-              <li>
-                Views:
-                <p> {Number.parseInt(popularity)}</p>
-              </li>
-              <li>
-                <p>Vote Average:</p>
-                <p>{vote_average}</p>
-              </li>
-              <li>
-                <p>Released in:</p>
-                <p>{normalizedDate}</p>
-              </li>
             </ul>
           </div>
         </aside>

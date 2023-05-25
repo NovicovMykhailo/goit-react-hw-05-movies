@@ -1,5 +1,4 @@
 .poster {
-
   display: flex;
   flex-direction: column;
   color: white;
@@ -38,26 +37,20 @@ aside {
   padding: 16px;
   border-radius: 10px;
   justify-content: space-between;
-
-  ;
 }
-.posterContainer{  position: relative;}
+.posterContainer {
+  position: relative;
+  border-radius: 10px;
+  overflow: hidden;
+}
 .posterLink {
   display: block;
   cursor: pointer;
   transition: all 0.4s ease;
   will-change: transform;
-  border-radius: 10px;
-  overflow: hidden;
-
 }
 .posterImage {
   width: 100%;
-  /* max-width: 400px; */
-}
-
-.posterLink:hover {
-  transform: scale(1.05);
 }
 
 .genres {
@@ -65,27 +58,23 @@ aside {
   gap: 10px;
 }
 .companies {
-   display: grid;
+  display: grid;
   grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
   grid-gap: 1rem;
-    flex-grow: 2;
+  flex-grow: 2;
   align-items: center;
   flex-wrap: wrap;
-
 }
 
-.companiesLogo{
-
+.companiesLogo {
   width: 100px;
   object-fit: contain;
   height: 100%;
   padding: 10px;
   background-color: #ffffff;
   border-radius: 10px;
-  /* filter: brightness(0) invert(1); */
 }
 .locations {
-
   display: flex;
   width: 100%;
   gap: 10px;
@@ -99,40 +88,45 @@ aside {
   list-style: circle;
   display: block;
 }
-.stats{
+.stats {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
   gap: 8px;
-text-align: center;
+  text-align: center;
 }
-.topAside{
+.topAside {
   display: flex;
   flex-direction: column;
-  gap:10px;
+  gap: 10px;
 }
-.bottomAside{
+.topAside  h4{
+  margin-bottom: 5px;
+}
+
+.bottomAside {
   display: flex;
   flex-direction: column;
   gap: 30px;
 }
-
-
 
 @media screen and (min-width: 500px) {
   .BG {
     height: calc(100vh - calc(100vh - 100%));
     background-size: cover;
   }
-  .poster{
-   flex-direction: row;
+  .poster {
+    flex-direction: row;
   }
-  .posterImage{
-      width: 50vw;
-  max-width: 400px;
+  .posterImage {
+    width: 50vw;
+    max-width: 400px;
     gap: 60px;
   }
-  aside{
-  width: 500px;
+  aside {
+    width: 500px;
+  }
+  .posterLink:hover {
+    transform: scale(1.05);
   }
 }

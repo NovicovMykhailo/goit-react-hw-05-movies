@@ -60,9 +60,7 @@
 .overview::-webkit-scrollbar {
   display: none;
 }
-.card:hover {
-  transform: scale(1.06);
-}
+
 .card:hover .overview {
   opacity: 1;
   transform: translateY(0);
@@ -72,4 +70,5 @@
   .card {
     width: 200px;
   }
+
 }

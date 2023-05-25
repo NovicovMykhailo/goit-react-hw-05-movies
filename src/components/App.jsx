@@ -5,6 +5,8 @@ import { StyledLink, Hedder, APP, Nav } from './App.styled';
 import SearchBar from './Filter/SearchBar';
 import { StyledSection } from './Section/Section';
 import MoviePoster from './MoviePoster/MoviePoster';
+import Cast from './Cast/Cast';
+import Reviews from './Reviews/Reviews';
 // import * as API from '../services/themoviedb_API'
 
 export const App = () => {
@@ -18,7 +20,14 @@ export const App = () => {
       </Hedder>
 
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route
+          path="/"
+          element={
+            <StyledSection>
+              <Home />
+            </StyledSection>
+          }
+        />
         <Route
           path="/movies"
           element={
@@ -37,8 +46,8 @@ export const App = () => {
             </StyledSection>
           }
         >
-          <Route path="cast" />
-          <Route path="reviews" />
+          <Route path="cast" element={<Cast/>} />
+          <Route path="reviews" element={<Reviews/>} />
         </Route>
       </Routes>
     </APP>

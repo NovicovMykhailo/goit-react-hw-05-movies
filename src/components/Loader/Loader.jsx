@@ -4,7 +4,7 @@ const Loader = () => {
   return (
     <div
       style={{
-        height:' calc(100vh - calc(100vh - 100%))',
+        height:'100vh',
         width: '100%',
         display: 'flex',
         justifyContent: 'center',

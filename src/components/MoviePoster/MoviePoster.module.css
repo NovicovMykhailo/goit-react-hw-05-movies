@@ -31,13 +31,12 @@
 aside {
   display: flex;
   flex-direction: column;
-  gap: 50px;
+  gap: 30px;
 
   background-color: rgba(0, 0, 0, 0.65);
   padding: 16px;
   border-radius: 10px;
   max-height: 100%;
-
 }
 .posterContainer {
   position: relative;
@@ -59,28 +58,26 @@ aside {
   gap: 10px;
 }
 .companies {
-
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   gap: 8px;
   align-items: center;
   flex-wrap: wrap;
-  justify-content: space-evenly;
+  justify-content: space-between;
   width: 100%;
-    max-width: 500px;
+  max-width: 500px;
+  border: 1px solid white;
+  border-radius: 10px;
+  padding: 20px;
 }
 
 .companiesLogo {
- width: 9rem;
+  width: 9rem;
   object-fit: contain;
   height: 50px;
   filter: grayscale(1) contrast(2) invert(1) brightness(8);
-
- 
 }
-
-
 
 .locations {
   display: flex;
@@ -104,9 +101,11 @@ aside {
   border: 1px solid white;
   border-radius: 10px;
   padding: 10px;
+  font-size: 14px;
 }
 .overview {
   max-width: 500px;
+  font-size: 1.4rem;
 }
 .topAside {
   display: flex;
@@ -124,8 +123,77 @@ aside {
 .bottomAside {
   display: flex;
   flex-direction: column;
-  gap: 30px;
+  gap: 10px;
 }
+.bottomAside h4 {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.buttonContainer {
+  display: flex;
+  flex-direction: row;
+  gap: 18px;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+.Links {
+  border: 1px solid white;
+
+  border-radius: 4px;
+  text-align: center;
+  text-transform: uppercase;
+  cursor: pointer;
+  font-weight: 600;
+  color: white;
+  width: 100%;
+}
+.Links:hover {
+  background-color: #fff;
+  color: black;
+}
+.linkItem {
+  display: inline-block;
+  padding: 10px 50px;
+
+  width: 100%;
+  height: 100%;
+}
+.additional {
+  margin-top: 10px;
+}
+.outletContainer {
+  margin: 20px auto 0 auto;
+  border-top: 1px solid white;
+  min-height: 200px;
+  display: flex;
+  gap: 10px;
+  max-width: 1334px;
+  flex-direction: column;
+}
+.goBackBtn{
+  position: fixed;
+  top: 80px;
+  left: 30px;
+  display: block;
+  padding: 30px;
+  background-image: url('../../images/go-back.png');
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+  will-change: scale;
+ filter: drop-shadow(0px 0px 10px #ffffff);
+  z-index: 99999999;
+
+}
+.goBackBtn:hover{
+  scale:1.1;
+}
+
+
 
 @media screen and (min-width: 758px) {
   .BG {
@@ -145,5 +213,13 @@ aside {
   }
   .posterLink:hover {
     transform: scale(1.05);
+  }
+  aside {
+    justify-content: space-between;
+  }
+}
+@media screen and (min-width: 1200px) {
+  .poster {
+    justify-content: center;
   }
 }

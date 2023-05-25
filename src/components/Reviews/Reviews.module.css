@@ -1,0 +1,13 @@
+.reviewsList{
+  margin-top: 20px;
+display: flex;
+flex-direction: column;
+gap: 10px;
+  width: 100%;
+}
+.title {
+  margin-top: 20px;
+  color: white;
+  text-align: center;
+  font-size: 32px;
+}

@@ -1,18 +1,18 @@
 import { Link } from 'react-router-dom';
 import css from './CardItem.module.css';
-import { format } from 'date-fns';
+
+import { DateFormat, numToFix } from '../../services/utils';
 
 const CardItem = ({ data }) => {
   const { id, poster_path, title, overview, release_date, popularity } = data;
-  const normalizedPopularity = Number.parseInt(popularity);
-  const normalizedDate = format(new Date(release_date), ' dd MMM yyyy');
+
   return (
     <li title={title} className={css.card}>
       <Link to={`/movies/${id}`}>
         <div className={css.description}>
           <ul className={css.stats}>
-            <li>Views: {normalizedPopularity}</li>
-            <li>{normalizedDate}</li>
+            <li>Views: {numToFix(popularity)}</li>
+            <li>{DateFormat(release_date)}</li>
           </ul>
         </div>
         <img

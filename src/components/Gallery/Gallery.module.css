@@ -1,18 +1,21 @@
 .section {
   padding: 0 24px;
+  margin-left: -20px;
   position: absolute;
   top: 80px;
-
+  width: 100%;
+  display: flex;
+  justify-content: center;
 }
 .title {
   margin-bottom: 16px;
 }
 .galleryList {
-    justify-self: center;
+  justify-self: center;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   list-style: none;
   gap: 15px;
+  max-width: 1491px;
 }
-

@@ -1,0 +1,53 @@
+.cast {
+  margin-top: 20px;
+  color: white;
+}
+.title {
+  text-align: center;
+  font-size: 32px;
+}
+.listContainer {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: space-evenly;
+}
+.actorCard {
+  width: 100%;
+  padding: 10px;
+
+  border-radius: 10px;
+  background-color: rgba(0, 0, 0, 0.65);
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  position: relative;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(255, 255, 255, 0.3) 0px 30px 60px -30px;
+}
+.name {
+  font-size: 24px;
+}
+.character {
+  font-size: 20px;
+  font-weight: 300;
+  position: absolute;
+  left: 10px;
+  bottom: 10px;
+}
+.popularity {
+  text-align: right;
+  font-size: 18px;
+}
+.index {
+  text-align: right;
+  position: absolute;
+  right: 10px;
+  top: 10px;
+}
+@media screen and (min-width: 758px) {
+  .actorCard {
+    width: 300px;
+  }
+}

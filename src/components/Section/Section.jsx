@@ -1,20 +1,12 @@
 import styled from 'styled-components';
 
-const Section = ({ children, title = '' }) => {
+export const StyledSection = ({ children, title = '' }) => {
   return (
     <main>
-      <section>
+      <section style={{ width: '100%', padding: '20px' }}>
         <h1 className="visually-hiddn">{title}</h1>
         {children}
       </section>
-      
     </main>
   );
 };
-
-export const StyledSection = styled(Section)`
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  padding: 0;
-`;

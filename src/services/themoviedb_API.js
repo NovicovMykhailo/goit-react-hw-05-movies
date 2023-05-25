@@ -49,8 +49,8 @@ export async function getDetails(ID) {
 export async function getMovieActors(ID) {
   try {
     const response = await API.get(`/movie/${ID}/credits`);
-      console.log(response.data.cast.map(actor => actor.name))
-    return response.data.cast.map(actor => actor.name);
+      // response.data.cast.map(actor => console.log(actor))
+    return response.data.cast.map(actor =>{return actor});
   } catch (error) {
     console.log(error);
   }
@@ -59,7 +59,7 @@ export async function getMovieActors(ID) {
 export async function getReviews(ID, page = 1) {
   try {
     const response = await API.get(`/movie/${ID}/reviews?page=${page}`);
-    console.log(response.data.results);
+    // console.log(response.data.results);
     return response.data.results;
   } catch (error) {
     console.log(error);

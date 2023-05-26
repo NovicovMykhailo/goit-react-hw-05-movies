@@ -7,7 +7,7 @@ const CastCard = ({ item, index }) => {
     <li className={css.actorCard}>
       <p className={css.index}>{index + 1}</p>
       <h3 className={css.name}>{`${name}`}</h3>
-      <h4 className={css.character}>as: {character}</h4>
+     {character && <h4 className={css.character}>as: {character}</h4>}
       <p className={css.popularity}>{Number.parseFloat(popularity).toFixed(1)} ☆</p>
     </li>
   );

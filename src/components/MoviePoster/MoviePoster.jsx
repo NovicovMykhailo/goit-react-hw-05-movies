@@ -49,6 +49,7 @@ const MoviePoster = () => {
   if (status === 'resolved') {
     const {
       backdrop_path,
+      title,
       genres,
       poster_path,
       original_title,
@@ -83,7 +84,7 @@ const MoviePoster = () => {
           <aside>
             <div className={css.topAside}>
               <h2>
-                {original_title} ( {year(release_date)} )
+                {title} ( {year(release_date)} )
               </h2>
               <p>{tagline}</p>
 
@@ -122,25 +123,20 @@ const MoviePoster = () => {
               )}
               <h4>Statistics: </h4>
               <ul className={css.stats}>
-                {release_date && (
-                  <li>
-                    Release Date:
-                    <p>{DateFormat(release_date)}</p>
-                  </li>
-                )}
+                <li>
+                  Release Date:
+                  <p>{DateFormat(release_date)}</p>
+                </li>
 
-                {vote_average && (
-                  <li>
-                    Vote Average:
-                    <p>{vote_average}</p>
-                  </li>
-                )}
-                {popularity && (
-                  <li>
-                    User Score:
-                    <p>{Number.parseFloat(popularity).toFixed(1)}</p>
-                  </li>
-                )}
+                <li>
+                  Vote Average:
+                  <p>{vote_average}</p>
+                </li>
+
+                <li>
+                  User Score:
+                  <p>{Number.parseFloat(popularity).toFixed(1)}</p>
+                </li>
               </ul>
             </div>
             <div className={css.additional}>

@@ -4,6 +4,11 @@ import placeholder from '../images/placeholder_sq.png'
 export const DateFormat = date => {
   return format(new Date(date), ' dd MMM yyyy');
 };
+
+export const year = date => {
+  return format(new Date(date), 'yyyy');
+};
+
 export const ToStringConverter = obj => {
   const result = String(obj.map(name => name.name))
     .split(',')

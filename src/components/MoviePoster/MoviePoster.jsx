@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import * as API from '../../services/themoviedb_API';
 import css from './MoviePoster.module.css';
-import { DateFormat, ToStringConverter, numToFix } from '../../services/utils';
+import { DateFormat, ToStringConverter, numToFix, year } from '../../services/utils';
 import Loader from 'components/Loader/Loader';
 import Error from 'components/Error/Error';
 import { useParams, Outlet, Link, useNavigate } from 'react-router-dom';
@@ -29,6 +29,16 @@ const MoviePoster = () => {
     })();
   }, [movieId]);
 
+  const bgNormalize = bg => {
+    if (bg === null) {
+      return `url( ${bgPlaceholder})`;
+    }
+
+    if (bg) {
+      return `url(https://image.tmdb.org/t/p/original/${bg})`;
+    }
+  };
+
   if (status === 'pending') {
     return <Loader />;
   }
@@ -37,15 +47,6 @@ const MoviePoster = () => {
   }
 
   if (status === 'resolved') {
-    const bgNormalize = bg => {
-  
-      if (bg === null) {
-        return`url( ${bgPlaceholder})`;
-      }
-      if (bg) {
-        return `url(https://image.tmdb.org/t/p/original/${bg})`;
-      }
-    };
     const {
       backdrop_path,
       genres,
@@ -81,7 +82,9 @@ const MoviePoster = () => {
           </div>
           <aside>
             <div className={css.topAside}>
-              <h2>{original_title}</h2>
+              <h2>
+                {original_title} ( {year(release_date)} )
+              </h2>
               <p>{tagline}</p>
 
               <div>
@@ -119,19 +122,25 @@ const MoviePoster = () => {
               )}
               <h4>Statistics: </h4>
               <ul className={css.stats}>
-                <li>
-                  Release Date:
-                  <p>{DateFormat(release_date)}</p>
-                </li>
+                {release_date && (
+                  <li>
+                    Release Date:
+                    <p>{DateFormat(release_date)}</p>
+                  </li>
+                )}
 
-                <li>
-                  Vote Average:
-                  <p>{vote_average}</p>
-                </li>
-                <li>
-                  User Score:
-                  <p>{numToFix(popularity)}</p>
-                </li>
+                {vote_average && (
+                  <li>
+                    Vote Average:
+                    <p>{vote_average}</p>
+                  </li>
+                )}
+                {popularity && (
+                  <li>
+                    User Score:
+                    <p>{Number.parseFloat(popularity).toFixed(1)}</p>
+                  </li>
+                )}
               </ul>
             </div>
             <div className={css.additional}>

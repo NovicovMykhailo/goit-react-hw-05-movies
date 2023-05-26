@@ -7,7 +7,7 @@ import { StyledSection } from './Section/Section';
 import MoviePoster from './MoviePoster/MoviePoster';
 import Cast from './Cast/Cast';
 import Reviews from './Reviews/Reviews';
-// import * as API from '../services/themoviedb_API'
+import NotFound from './NotFound/NotFound';
 
 export const App = () => {
   return (
@@ -20,14 +20,7 @@ export const App = () => {
       </Hedder>
 
       <Routes>
-        <Route
-          path="/"
-          element={
-            <StyledSection>
-              <Home />
-            </StyledSection>
-          }
-        />
+        <Route path="/" element={<Home />} />
         <Route
           path="/movies"
           element={
@@ -46,9 +39,10 @@ export const App = () => {
             </StyledSection>
           }
         >
-          <Route path="cast" element={<Cast/>} />
-          <Route path="reviews" element={<Reviews/>} />
+          <Route path="cast" element={<Cast />} />
+          <Route path="reviews" element={<Reviews />} />
         </Route>
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </APP>
   );

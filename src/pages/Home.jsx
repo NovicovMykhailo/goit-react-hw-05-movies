@@ -4,6 +4,8 @@ import * as API from '../services/themoviedb_API';
 import Gallery from 'components/Gallery/Gallery';
 import Loader from 'components/Loader/Loader';
 import Error from 'components/Error/Error';
+import { StyledSection } from 'components/Section/Section';
+
 
 const Home = () => {
   const [movies, setMovies] = useState([]);
@@ -27,13 +29,15 @@ const Home = () => {
     <>
       {status === 'pending' && <Loader />}
       {status === 'rejected' && <Error message={error} />}
-      
+
       {status === 'resolved' && (
-        <Gallery>
-          {movies.map(item => (
-            <CardItem data={item} key={item.id} />
-          ))}
-        </Gallery>
+        <StyledSection title={"Gallery"}>
+          <Gallery>
+            {movies.map(item => (
+              <CardItem data={item} key={item.id} />
+            ))}
+          </Gallery>
+        </StyledSection>
       )}
     </>
   );

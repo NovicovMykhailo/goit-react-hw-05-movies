@@ -42,7 +42,7 @@ export const formatAvatar = avatar => {
   if (avatar !== null) {
       let arr = Array.from(avatar);
       arr.shift();
-    if (arr.length === 31) {
+    if (arr.length <= 31) {
       return `https://image.tmdb.org/t/p/w500/${arr.join('')}`;
     } else {
       return arr.join('');

@@ -1,21 +1,12 @@
-.section {
-  padding: 0 24px;
-  margin-left: -20px;
-  position: absolute;
-  top: 80px;
-  width: 100%;
+
+.galleryList {
   display: flex;
   justify-content: center;
-}
-.title {
-  margin-bottom: 16px;
-}
-.galleryList {
-  justify-self: center;
-  display: flex;
-  flex-direction: row;
   flex-wrap: wrap;
-  list-style: none;
-  gap: 15px;
+   gap: 15px;
+  width: 100%;
   max-width: 1491px;
+  margin: 0 auto;
+  list-style: none;
 }
+

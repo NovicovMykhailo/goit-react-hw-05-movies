@@ -29,7 +29,7 @@ export async function searchMovies(keyword, page = 1) {
         .toLowerCase()
         .trim()}&include_adult=true&page=${page}`
     );
-    console.log(response.data.results);
+    // console.log(response.data.results);
     return response.data.results;
   } catch (error) {
     console.log(error);

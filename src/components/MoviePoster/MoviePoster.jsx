@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import * as API from '../../services/themoviedb_API';
 import css from './MoviePoster.module.css';
-import { DateFormat, ToStringConverter, numToFix, year } from '../../services/utils';
+import { DateFormat, ToStringConverter, year } from '../../services/utils';
 import Loader from 'components/Loader/Loader';
 import Error from 'components/Error/Error';
 import { useParams, Outlet, Link, useNavigate } from 'react-router-dom';

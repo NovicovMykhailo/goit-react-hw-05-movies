@@ -6,23 +6,24 @@ import Loader from 'components/Loader/Loader';
 import Error from 'components/Error/Error';
 import { StyledSection } from 'components/Section/Section';
 
-
 const Home = () => {
   const [movies, setMovies] = useState([]);
   const [status, setStatus] = useState('ide');
- const [error, setError] = useState(null);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-    try {
+    (async () => {
       setStatus('pending');
-      API.getTrendingMovies().then(res => {
-        setMovies(res);
-        setStatus('resolved');
-      });
-    } catch (error) {
-      setStatus('rejected');
-      setError(error);
-    }
+      try {
+        await API.getTrendingMovies().then(res => {
+          setMovies(res);
+          setStatus('resolved');
+        });
+      } catch (error) {
+        setStatus('rejected');
+        setError(error);
+      }
+    })();
   }, []);
 
   return (
@@ -31,10 +32,10 @@ const Home = () => {
       {status === 'rejected' && <Error message={error} />}
 
       {status === 'resolved' && (
-        <StyledSection title={"Gallery"}>
+        <StyledSection title={'Gallery'}>
           <Gallery>
             {movies.map(item => (
-              <CardItem data={item} key={item.id} />
+              <CardItem data={item} key={item.id} state={{ from: '/' }} />
             ))}
           </Gallery>
         </StyledSection>

@@ -13,16 +13,17 @@ const Reviews = () => {
   const { movieId } = useParams();
 
   useEffect(() => {
-    setStatus('pending');
+    (async()=>{setStatus('pending');
     try {
-      API.getReviews(movieId).then(reviews => {
+      await API.getReviews(movieId).then(reviews => {
         setReviews(reviews);
         setStatus('resolved');
       });
     } catch (error) {
       setMessage(error);
       setStatus('rejected');
-    }
+    }})()
+    
   }, [movieId]);
 
 

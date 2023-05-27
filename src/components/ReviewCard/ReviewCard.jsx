@@ -4,7 +4,7 @@ import css from './ReviewCard.module.css'
 const ReviewCard = ({ review }) => {
   const { content, created_at, url, author_details } = review;
   const { username, avatar_path, rating } = author_details;
-  // console.log(review)
+
      return (
        <li className={css.card}>
          <div className={css.userAvatar}>

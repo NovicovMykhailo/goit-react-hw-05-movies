@@ -76,7 +76,10 @@ aside {
   width: 9rem;
   object-fit: contain;
   height: 50px;
-  filter: grayscale(1) contrast(2) invert(1) brightness(8);
+
+
+    filter: grayscale(1) contrast(1.8) invert(1) brightness(1);
+  
 }
 
 .locations {

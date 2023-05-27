@@ -9,7 +9,6 @@ const Loader = () => {
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
-        // flexDirection: 'column',
       }}
     >
       <img

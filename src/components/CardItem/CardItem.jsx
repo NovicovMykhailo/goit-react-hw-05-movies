@@ -4,12 +4,12 @@ import placeholder from '../../images/200x300placeholder.jpg'
 
 import { DateFormat, numToFix } from '../../services/utils';
 
-const CardItem = ({ data }) => {
+const CardItem = ({ data, state }) => {
   const { id, poster_path, title, overview, release_date, popularity } = data;
   if (poster_path) {
     return (
       <li title={title} className={css.card}>
-        <Link to={`/movies/${id}`}>
+        <Link to={`/movies/${id}`} state={state}>
           <div className={css.description}>
             <ul className={css.stats}>
               {popularity && <li>Views: {numToFix(popularity)}</li>}

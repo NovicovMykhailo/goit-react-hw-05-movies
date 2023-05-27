@@ -1,4 +1,4 @@
-import { useSearchParams } from 'react-router-dom';
+import { useSearchParams, useLocation } from 'react-router-dom';
 import css from './SearchBar.module.css';
 import { useEffect, useState } from 'react';
 import Loader from 'components/Loader/Loader';
@@ -7,6 +7,7 @@ import * as API from '../../services/themoviedb_API';
 
 import Gallery from 'components/Gallery/Gallery';
 import CardItem from 'components/CardItem/CardItem';
+import Tost from 'components/Tost/Tost';
 
 const SearchBar = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -17,6 +18,8 @@ const SearchBar = () => {
   const [input, setInput] = useState('');
   const [status, setStatus] = useState('idle');
   const [error, setError] = useState(null);
+  const [showTost, setShowTost] = useState(false);
+  const location = useLocation();
 
   useEffect(() => {
     if (value === '') {
@@ -26,7 +29,7 @@ const SearchBar = () => {
       (async () => {
         setStatus('pending');
         try {
-          API.searchMovies(value).then(movies => {
+          await API.searchMovies(value).then(movies => {
             setFoundMovies(movies);
             setStatus('resolved');
           });
@@ -46,8 +49,14 @@ const SearchBar = () => {
 
   function onSubmit(e) {
     e.preventDefault();
-    const nextEl = input !== '' ? { query: input } : {};
-    setSearchParams(nextEl);
+    if (value === '') {
+      setShowTost(true);
+      setTimeout(()=>{setShowTost(false);},1500)
+      return;
+    } else {
+      const nextEl = input !== '' ? { query: input } : {};
+      setSearchParams(nextEl);
+    }
   }
 
   return (
@@ -67,12 +76,13 @@ const SearchBar = () => {
           value={input}
         />
       </form>
+      {showTost && <Tost message={'Please enter a title to search for the film'} />}
       {status === 'pending' && <Loader />}
       {status === 'rejected' && <Error message={error} />}
       {status === 'resolved' && (
         <Gallery>
           {foundMovies.map(movie => (
-            <CardItem data={movie} key={movie.id} />
+            <CardItem data={movie} key={movie.id} state={{ from: location }} />
           ))}
         </Gallery>
       )}

@@ -1,4 +1,4 @@
-import css from './MoviePoster.module.css';
+import css from './MovieDetails.module.css';
 import { DateFormat, ToStringConverter, year } from '../../services/utils';
 import { Link } from 'react-router-dom';
 

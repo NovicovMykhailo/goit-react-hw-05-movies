@@ -1,6 +1,6 @@
 import { Suspense, useEffect, useState } from 'react';
 import * as API from '../../services/themoviedb_API';
-import css from './MoviePoster.module.css';
+import css from './MovieDetails.module.css';
 import Loader from 'components/Loader/Loader';
 import Error from 'components/Error/Error';
 import { useParams, Outlet, Link, useLocation } from 'react-router-dom';
@@ -8,7 +8,7 @@ import bgPlaceholder from '../../images/poster_bg.jpg';
 import MovieDescription from './MovieDescription';
 
 
-const MoviePoster = () => {
+const MovieDetails = () => {
   const { movieId } = useParams();
   const [info, setInfo] = useState('');
   const [status, setStatus] = useState('idle');
@@ -64,4 +64,4 @@ const MoviePoster = () => {
     );
   }
 };
-export default MoviePoster;
+export default MovieDetails;

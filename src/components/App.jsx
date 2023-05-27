@@ -7,7 +7,7 @@ import Loader from './Loader/Loader';
 const Home = lazy(() => import('pages/Home'));
 const Movies = lazy(() => import('pages/Movies'));
 const SearchBar = lazy(() => import('./SearchBar/SearchBar'));
-const MoviePoster = lazy(() => import('./MoviePoster/MoviePoster'));
+const MovieDetails = lazy(() => import('./MovieDetails/MovieDetails'));
 const Cast = lazy(() => import('./Cast/Cast'));
 const Reviews = lazy(() => import('./Reviews/Reviews'));
 const NotFound = lazy(() => import('./NotFound/NotFound'));
@@ -22,7 +22,7 @@ export const App = () => {
           <StyledLink to="./movies">Movies</StyledLink>
         </Nav>
       </Hedder>
-      <Suspense fallback={<Loader/>}>
+      <Suspense fallback={<Loader />}>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route
@@ -39,7 +39,7 @@ export const App = () => {
             path="/movies/:movieId"
             element={
               <StyledSection>
-                <MoviePoster />
+                <MovieDetails />
               </StyledSection>
             }
           >

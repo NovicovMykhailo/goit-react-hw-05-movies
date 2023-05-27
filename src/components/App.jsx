@@ -1,13 +1,17 @@
-import Home from 'pages/Home';
-import Movies from 'pages/Movies';
+import { Suspense, lazy } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { StyledLink, Hedder, APP, Nav } from './App.styled';
-import SearchBar from './Filter/SearchBar';
 import { StyledSection } from './Section/Section';
-import MoviePoster from './MoviePoster/MoviePoster';
-import Cast from './Cast/Cast';
-import Reviews from './Reviews/Reviews';
-import NotFound from './NotFound/NotFound';
+import Loader from './Loader/Loader';
+
+const Home = lazy(() => import('pages/Home'));
+const Movies = lazy(() => import('pages/Movies'));
+const SearchBar = lazy(() => import('./SearchBar/SearchBar'));
+const MoviePoster = lazy(() => import('./MoviePoster/MoviePoster'));
+const Cast = lazy(() => import('./Cast/Cast'));
+const Reviews = lazy(() => import('./Reviews/Reviews'));
+const NotFound = lazy(() => import('./NotFound/NotFound'));
+
 
 export const App = () => {
   return (
@@ -18,32 +22,33 @@ export const App = () => {
           <StyledLink to="./movies">Movies</StyledLink>
         </Nav>
       </Hedder>
-
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route
-          path="/movies"
-          element={
-            <Movies>
+      <Suspense fallback={<Loader/>}>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route
+            path="/movies"
+            element={
+              <Movies>
+                <StyledSection>
+                  <SearchBar />
+                </StyledSection>
+              </Movies>
+            }
+          ></Route>
+          <Route
+            path="/movies/:movieId"
+            element={
               <StyledSection>
-                <SearchBar />
+                <MoviePoster />
               </StyledSection>
-            </Movies>
-          }
-        ></Route>
-        <Route
-          path="/movies/:movieId"
-          element={
-            <StyledSection>
-              <MoviePoster />
-            </StyledSection>
-          }
-        >
-          <Route path="cast" element={<Cast />} />
-          <Route path="reviews" element={<Reviews />} />
-        </Route>
-        <Route path="*" element={<NotFound />} />
-      </Routes>
+            }
+          >
+            <Route path="cast" element={<Cast />} />
+            <Route path="reviews" element={<Reviews />} />
+          </Route>
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </Suspense>
     </APP>
   );
 };

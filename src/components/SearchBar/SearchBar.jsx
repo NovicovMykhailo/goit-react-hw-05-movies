@@ -1,6 +1,6 @@
 import { useSearchParams, useLocation } from 'react-router-dom';
 import css from './SearchBar.module.css';
-import { useEffect, useState } from 'react';
+import { Suspense, useEffect, useState } from 'react';
 import Loader from 'components/Loader/Loader';
 import Error from 'components/Error/Error';
 import * as API from '../../services/themoviedb_API';
@@ -41,17 +41,19 @@ const SearchBar = () => {
     }
   }, [value]);
 
-  // const updateQueryString = (e) =>{
-  //   const query = e.target.value;
-  //   const nextEl = query !== '' ? { query: e.target.value } : {};
-  //   setSearchParams(nextEl);
-  // }
-
   function onSubmit(e) {
     e.preventDefault();
-    if (value === '') {
-      setShowTost(true);
-      setTimeout(()=>{setShowTost(false);},1500)
+    if (input === '') {
+      setTimeout(() => {
+        setShowTost(true);
+      }, 300);
+
+      setTimeout(() => {
+        setShowTost(false);
+      }, 2000);
+      setFoundMovies([]);
+      setSearchParams({});
+
       return;
     } else {
       const nextEl = input !== '' ? { query: input } : {};
@@ -61,7 +63,7 @@ const SearchBar = () => {
 
   return (
     <>
-      <form className={css.SearchForm} onClick={onSubmit}>
+      <form className={css.SearchForm} onSubmit={onSubmit}>
         <button type="submit" className={css.SearchFormButton}>
           <span className={css.SearchFormButtonLabel}>Search</span>
         </button>
@@ -81,9 +83,11 @@ const SearchBar = () => {
       {status === 'rejected' && <Error message={error} />}
       {status === 'resolved' && (
         <Gallery>
-          {foundMovies.map(movie => (
-            <CardItem data={movie} key={movie.id} state={{ from: location }} />
-          ))}
+          <Suspense>
+            {foundMovies.map(movie => (
+              <CardItem data={movie} key={movie.id} state={{ from: location }} />
+            ))}
+          </Suspense>
         </Gallery>
       )}
     </>

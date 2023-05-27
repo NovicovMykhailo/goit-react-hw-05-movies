@@ -33,15 +33,3 @@ const CardItem = ({ data, state }) => {
 };
 
 export default CardItem;
-
-// const obj = {
-//   id: 920125,
-//   title: "White Men Can't Jump",
-//   overview:
-//     'Seemingly opposite street hoopers, Jeremy, an injury prone former star, and Kamal, a has-been prodigy, team up to take one final shot at living out their dreams.',
-//   poster_path: '/7MUQMSncjUSYeNx0ZAgFCxhlPhv.jpg',
-//   popularity: 86.503,
-//   release_date: '2023-05-11',
-//   vote_average: 6.37,
-//   vote_count: 54,
-// };

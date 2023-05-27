@@ -1,5 +1,5 @@
 import CardItem from 'components/CardItem/CardItem';
-import { useEffect, useState } from 'react';
+import { Suspense, useEffect, useState } from 'react';
 import * as API from '../services/themoviedb_API';
 import Gallery from 'components/Gallery/Gallery';
 import Loader from 'components/Loader/Loader';
@@ -34,9 +34,11 @@ const Home = () => {
       {status === 'resolved' && (
         <StyledSection title={'Gallery'}>
           <Gallery>
-            {movies.map(item => (
-              <CardItem data={item} key={item.id} state={{ from: '/' }} />
-            ))}
+            <Suspense >
+              {movies.map(item => (
+                <CardItem data={item} key={item.id} state={{ from: '/' }} />
+              ))}
+            </Suspense>
           </Gallery>
         </StyledSection>
       )}

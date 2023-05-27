@@ -1,4 +1,4 @@
-import { useEffect, useState} from 'react';
+import { Suspense, useEffect, useState } from 'react';
 import * as API from '../../services/themoviedb_API';
 import css from './MoviePoster.module.css';
 import Loader from 'components/Loader/Loader';
@@ -7,18 +7,17 @@ import { useParams, Outlet, Link, useLocation } from 'react-router-dom';
 import bgPlaceholder from '../../images/poster_bg.jpg';
 import MovieDescription from './MovieDescription';
 
+
 const MoviePoster = () => {
   const { movieId } = useParams();
   const [info, setInfo] = useState('');
   const [status, setStatus] = useState('idle');
   const [error, setError] = useState(null);
 
-
-
   const location = useLocation();
-  const [page, setPage] = useState(() => {return location.state === null ? '/movies' : location.state.from });
-
-
+  const [page] = useState(() => {
+    return location.state === null ? '/movies' : location.state.from;
+  });
 
   useEffect(() => {
     (async () => {
@@ -36,13 +35,8 @@ const MoviePoster = () => {
   }, [movieId]);
 
   const bgNormalize = bg => {
-    if (bg === null) {
-      return `url( ${bgPlaceholder})`;
-    }
-
-    if (bg) {
-      return `url(https://image.tmdb.org/t/p/original/${bg})`;
-    }
+    if (bg === null) return `url( ${bgPlaceholder})`;
+    if (bg) return `url(https://image.tmdb.org/t/p/original/${bg})`;
   };
 
   if (status === 'pending') {
@@ -51,11 +45,8 @@ const MoviePoster = () => {
   if (status === 'rejected') {
     return <Error message={error} />;
   }
-
   if (status === 'resolved') {
     const { backdrop_path } = info;
-
-
 
     return (
       <>
@@ -65,9 +56,11 @@ const MoviePoster = () => {
           <MovieDescription info={info} />
         </article>
         <div className={css.outletContainer}>
-          <Outlet />
+          <Suspense fallback={<div>Loading...</div>}>
+            <Outlet />
+          </Suspense>
         </div>
-      </> 
+      </>
     );
   }
 };

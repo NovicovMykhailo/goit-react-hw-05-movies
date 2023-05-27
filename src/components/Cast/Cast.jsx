@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { Suspense, useEffect, useState } from 'react';
 import * as API from '../../services/themoviedb_API';
 import { useParams } from 'react-router-dom';
 import Loader from 'components/Loader/Loader';
@@ -14,18 +14,19 @@ const Cast = () => {
   const { movieId } = useParams();
 
   useEffect(() => {
-    setStatus('pending');
-    try {
-      API.getMovieActors(movieId).then(reviews => {
-        setCast(reviews);
-        setStatus('resolved');
-      });
-    } catch (error) {
-      setMessage(error);
-      setStatus('rejected');
-    }
+    (async () => {
+      setStatus('pending');
+      try {
+        await API.getMovieActors(movieId).then(reviews => {
+          setCast(reviews);
+          setStatus('resolved');
+        });
+      } catch (error) {
+        setMessage(error);
+        setStatus('rejected');
+      }
+    })();
   }, [movieId]);
-  // console.log(cast)
 
   if (status === 'pending') return <Loader />;
   if (status === 'rejected') return <Error message={message} />;
@@ -33,10 +34,13 @@ const Cast = () => {
     return (
       <div className={css.cast}>
         <h3 className={css.title}>Cast</h3>
+
         <ol className={css.listContainer}>
-          {cast.map((item, index) => {
-            return <CastCard item={item} key={item.id} index={index} />;
-          })}
+          <Suspense fallback={<Loader />}>
+            {cast.map((item, index) => {
+              return <CastCard item={item} key={item.id} index={index} />;
+            })}
+          </Suspense>
         </ol>
       </div>
     );
@@ -44,4 +48,3 @@ const Cast = () => {
 };
 
 export default Cast;
-

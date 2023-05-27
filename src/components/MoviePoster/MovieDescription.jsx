@@ -29,6 +29,7 @@ const MovieDescription = ({info}) => {
             alt={original_title}
             loading="lazy"
             width="400"
+            max-height='709'
           />
         </a>
         <p className={css.locations}>{ToStringConverter(production_countries)}</p>

@@ -29,20 +29,6 @@ const ReviewCard = ({ review }) => {
 };
 export default ReviewCard;
 
-// const obj = {
-//   author_details: {
-//     name: '',
-//     username: 'thealanfrench',
-//     avatar_path: '/https://secure.gravatar.com/avatar/23f2cd16e6fafdf013b30ccc22e2e4c8.jpg',
-//     rating: null,
-//   },
-//   content:
-//     'Check out the full spoiler free review at Sunshine State Cineplex. \r\nhttps://sunshinestatecineplex.com/2023/03/13/sxsw-2023-john-wick-chapter-4-2023/\r\n\r\nJohn Wick: Chapter 4 might be a little long, but when it is fun, there are few films that can compete with its magnetism. Reeves shows why he’s one of the best genre actors in the world and pours his heart and soul into a soft-spoken performance. Combined with Stahelski’s fight sequences, this is sure to become a highly rewatched, often quoted classic.',
-//   created_at: '2023-03-15T05:13:49.138Z',
-//   id: '6411540dfe6c1800bb659ebd',
-//   updated_at: '2023-03-24T22:19:13.344Z',
-//   url: 'https://www.themoviedb.org/review/6411540dfe6c1800bb659ebd',
-// };
 
 
 

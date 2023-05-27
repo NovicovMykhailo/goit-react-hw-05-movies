@@ -11,6 +11,7 @@ const Box = styled.div`
   text-align: center;
   transform: translateX(-50%);
   overflow: hidden;
+  z-index: 9999;
 `;
 const Title = styled.h3`
   display: block;

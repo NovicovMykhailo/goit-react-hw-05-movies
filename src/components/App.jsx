@@ -22,7 +22,7 @@ export const App = () => {
           <StyledLink to="./movies">Movies</StyledLink>
         </Nav>
       </Hedder>
-      <Suspense >
+      <Suspense fallback={<Loader />}>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route

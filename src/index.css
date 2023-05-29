@@ -57,6 +57,14 @@ code {
   clip-path: inset(50%);
   margin: -1px;
 }
-/* section{
-  padding: 20px 24px;
-} */
+::-webkit-scrollbar {
+  width: 0px;}
+
+
+::-webkit-scrollbar-track {
+  background: rgb(37, 37, 37); 
+    border-radius: 10px;
+}
+::-webkit-scrollbar-thumb {
+  background: white; 
+}

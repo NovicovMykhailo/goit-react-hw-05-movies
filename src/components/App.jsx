@@ -10,7 +10,7 @@ const SearchBar = lazy(() => import('./SearchBar/SearchBar'));
 const MovieDetails = lazy(() => import('./MovieDetails/MovieDetails'));
 const Cast = lazy(() => import('./Cast/Cast'));
 const Reviews = lazy(() => import('./Reviews/Reviews'));
-const NotFound = lazy(() => import('./NotFound/NotFound'));
+const NotFound = lazy(() => import('../pages/NotFound/NotFound'));
 
 
 export const App = () => {
@@ -22,7 +22,7 @@ export const App = () => {
           <StyledLink to="./movies">Movies</StyledLink>
         </Nav>
       </Hedder>
-      <Suspense fallback={<Loader />}>
+      <Suspense >
         <Routes>
           <Route path="/" element={<Home />} />
           <Route

@@ -65,3 +65,23 @@ export async function getReviews(ID, page = 1) {
     console.log(error);
   }
 }
+//информация про актера
+export async function getActorsInfo(ID) {
+  try {
+    const response = await API.get(`/person/${ID}`);
+    // console.log(response.data);
+    return response.data
+  } catch (error) {
+    console.log(error);
+  }
+}
+//информация про его фильмы актера
+export async function getMoviesCredits(ID) {
+  try {
+    const response = await API.get(`/person/${ID}/movie_credits`);
+    // console.log(response.data);
+    return response.data;
+  } catch (error) {
+    console.log(error);
+  }
+}

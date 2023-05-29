@@ -29,7 +29,7 @@ const MovieDescription = ({info}) => {
             alt={original_title}
             loading="lazy"
             width="400"
-            max-height='709'
+            max-height="709"
           />
         </a>
         <p className={css.locations}>{ToStringConverter(production_countries)}</p>
@@ -83,7 +83,7 @@ const MovieDescription = ({info}) => {
 
             <li>
               Vote Average:
-              <p>{vote_average}</p>
+              <p>{Number.parseFloat(vote_average).toFixed(1)}</p>
             </li>
 
             <li>

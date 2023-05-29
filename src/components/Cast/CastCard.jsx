@@ -1,10 +1,15 @@
 import css from './Cast.module.css'
-const CastCard = ({ item, index }) => {
-    const { name, popularity, character } = item
-    
+
+const CastCard = ({ item, index, onClick }) => {
+  const { name, popularity, character, id } = item
+
+  function handleClick() {
+        return onClick(id)
+
+  }    
 
   return (
-    <li className={css.actorCard}>
+    <li className={css.actorCard} onClick={handleClick}>
       <p className={css.index}>{index + 1}</p>
       <h3 className={css.name}>{`${name}`}</h3>
       {character && (

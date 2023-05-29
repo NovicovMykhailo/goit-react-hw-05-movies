@@ -3,7 +3,7 @@ import * as API from '../../services/themoviedb_API';
 import css from './MovieDetails.module.css';
 import Loader from 'components/Loader/Loader';
 import Error from 'components/Error/Error';
-import { useParams, Outlet, Link, useLocation } from 'react-router-dom';
+import { useParams, Outlet, Link, useLocation} from 'react-router-dom';
 import bgPlaceholder from '../../images/poster_bg.jpg';
 import MovieDescription from './MovieDescription';
 
@@ -14,10 +14,12 @@ const MovieDetails = () => {
   const [status, setStatus] = useState('idle');
   const [error, setError] = useState(null);
 
+
   const location = useLocation();
-  const [page] = useState(() => {
+  const [page, setPage] = useState(() => {
     return location.state === null ? '/movies' : location.state.from;
   });
+
 
   useEffect(() => {
     (async () => {
@@ -33,6 +35,12 @@ const MovieDetails = () => {
       }
     })();
   }, [movieId]);
+
+  useEffect(() => {
+
+    if (location.state !== null) setPage(location.state.from);
+    if (location.state === null) setPage('/');
+  }, [location.state]);
 
   const bgNormalize = bg => {
     if (bg === null) return `url( ${bgPlaceholder})`;
@@ -51,12 +59,12 @@ const MovieDetails = () => {
     return (
       <>
         <article className={css.poster}>
-          <Link className={css.goBackBtn} to={page}></Link>
+          <Link className={css.goBackBtn} to={page} ></Link>
           {<div className={css.BG} style={{ backgroundImage: bgNormalize(backdrop_path) }}></div>}
           <MovieDescription info={info} />
         </article>
         <div className={css.outletContainer}>
-          <Suspense fallback={<div>Loading...</div>}>
+          <Suspense>
             <Outlet />
           </Suspense>
         </div>

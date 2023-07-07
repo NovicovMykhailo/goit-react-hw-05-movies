@@ -11,12 +11,14 @@ const Home = () => {
   const [status, setStatus] = useState('ide');
   const [error, setError] = useState(null);
 
+
   useEffect(() => {
     (async () => {
       setStatus('pending');
       try {
         await API.getTrendingMovies().then(res => {
           setMovies(res);
+
           setStatus('resolved');
         });
       } catch (error) {
@@ -24,7 +26,7 @@ const Home = () => {
         setError(error);
       }
     })();
-  }, []);
+  },[]);
 
   return (
     <>
@@ -34,7 +36,7 @@ const Home = () => {
       {status === 'resolved' && (
         <StyledSection title={'Gallery'}>
           <Gallery>
-            <Suspense >
+            <Suspense>
               {movies.map(item => (
                 <CardItem data={item} key={item.id} state={{ from: '/' }} />
               ))}

@@ -73,3 +73,15 @@ export const filteredAray = (array) => {
 
   return String(Object.values(object)).split(',').join(', ');
 };
+
+export function filteredData(data) {
+  const sortedData = data.sort((b, a) => {
+    var c = new Date(a.release_date);
+    var d = new Date(b.release_date);
+    return c - d;
+  });
+
+  return sortedData;
+}
+
+

@@ -1,7 +1,7 @@
 import { Suspense, useEffect, useState } from 'react';
 import css from './ModalCard.module.css';
 import * as API from '../../services/themoviedb_API';
-import { DateFormat, formatImage, numToFix, filteredAray } from '../../services/utils';
+import { DateFormat, formatImage, numToFix, filteredAray, filteredData } from '../../services/utils';
 import CardItem from 'components/CardItem/CardItem';
 import { useLocation } from 'react-router-dom';
 
@@ -33,6 +33,7 @@ const ModalCard = ({ data }) => {
     })();
   }, [data]);
 
+
   if (status === 'resolved') {
     const { birthday, name, homepage, place_of_birth, popularity, biography, profile_path, also_known_as } = info;
 
@@ -62,7 +63,7 @@ const ModalCard = ({ data }) => {
 
         <ul className={css.movieList}>
           <Suspense fullback={<p>Loading...</p>}>
-            {movies.map(movie => (
+            {filteredData(movies.sort((a, b) => a.popularity - b.popularity)).map(movie => (
               <CardItem data={movie} key={movie.id} state={{ from: location }} />
             ))}
           </Suspense>

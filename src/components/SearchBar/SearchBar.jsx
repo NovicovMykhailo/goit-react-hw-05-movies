@@ -8,6 +8,8 @@ import * as API from '../../services/themoviedb_API';
 import Gallery from 'components/Gallery/Gallery';
 import CardItem from 'components/CardItem/CardItem';
 import Tost from 'components/Tost/Tost';
+import Button from 'components/Button/Button';
+import { filteredData } from '../../services/utils';
 
 const SearchBar = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -19,6 +21,7 @@ const SearchBar = () => {
   const [status, setStatus] = useState('idle');
   const [error, setError] = useState(null);
   const [showTost, setShowTost] = useState(false);
+  const [page, setPage] = useState(2);
   const location = useLocation();
 
   useEffect(() => {
@@ -31,6 +34,13 @@ const SearchBar = () => {
         try {
           await API.searchMovies(value).then(movies => {
             setFoundMovies(movies);
+            if (movies.length === 0) {
+              setShowTost(true);
+
+              setTimeout(() => {
+                setShowTost(false);
+              }, 2000);
+            }
             setStatus('resolved');
           });
         } catch (error) {
@@ -41,18 +51,19 @@ const SearchBar = () => {
     }
   }, [value]);
 
+
+
   function onSubmit(e) {
     e.preventDefault();
     if (input === '') {
-      setTimeout(() => {
-        setShowTost(true);
-      }, 300);
+      setFoundMovies([]);
+      setSearchParams({});
+      setStatus('ide');
+      setShowTost(true);
 
       setTimeout(() => {
         setShowTost(false);
       }, 2000);
-      setFoundMovies([]);
-      setSearchParams({});
 
       return;
     } else {
@@ -60,6 +71,16 @@ const SearchBar = () => {
       setSearchParams(nextEl);
     }
   }
+  async function loadMore() {
+    setPage(prev => (prev += 1));
+
+    try {
+      API.searchMovies(value, page).then(movies => {
+        setFoundMovies(prev => [...prev, ...movies]);
+      });
+    } catch (e) {}
+  }
+
 
   return (
     <>
@@ -81,14 +102,20 @@ const SearchBar = () => {
       {showTost && <Tost message={'Please enter a title to search for the film'} />}
       {status === 'pending' && <Loader />}
       {status === 'rejected' && <Error message={error} />}
-      {status === 'resolved' && (
-        <Gallery>
-          <Suspense>
-            {foundMovies.map(movie => (
-              <CardItem data={movie} key={movie.id} state={{ from: location }} />
-            ))}
-          </Suspense>
-        </Gallery>
+      {status === 'resolved' && foundMovies.length > 0 && (
+        <>
+          <Gallery>
+            <Suspense>
+              {filteredData(foundMovies.sort((a, b) => a.popularity - b.popularity)).map(movie => (
+                <CardItem data={movie} key={movie.id} state={{ from: location }} />
+              ))}
+            </Suspense>
+          </Gallery>
+          {foundMovies.length !== 0 && foundMovies.length > 18 && <Button onClick={loadMore} />}
+        </>
+      )}
+      {status === 'resolved' && foundMovies.length === 0 && showTost && (
+        <Tost message={'Oops, movies not found'} />
       )}
     </>
   );
